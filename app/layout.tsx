@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Archivo_Black, Inter } from "next/font/google";
+import { Archivo_Black, Inter } from "next/font/google";
 import "./globals.css";
 import { COMPANY } from "@/lib/data";
 import Navigation from "@/components/Navigation";
@@ -7,10 +7,17 @@ import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
 import MobileCTA from "@/components/MobileCTA";
 
-const display = Archivo_Black({ subsets: ["latin"], weight: "400", variable: "--font-display" });
-const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-// Load Archivo for secondary display weights
-const archivo = Archivo({ subsets: ["latin"], weight: ["500","600","700","800","900"], variable: "--font-archivo" });
+const display = Archivo_Black({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-display"
+});
+const sans = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans"
+});
 
 export const metadata: Metadata = {
   title: `${COMPANY.name} · Meisterbetrieb Dillingen · Bau, Sanierung, Außenanlagen`,
@@ -29,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${display.variable} ${sans.variable} ${archivo.variable}`}>
+    <html lang="de" className={`${display.variable} ${sans.variable}`}>
       <body className="bg-bone text-ink">
         <TopBar />
         <Navigation />
