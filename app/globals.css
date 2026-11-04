@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F5F2EC;
+  --ink: #0E0E0E;
+  --signal: #EA580C;
+}
+
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Prevent long German words from breaking layouts on narrow screens */
+h1, h2, h3, .font-display {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Safe-area padding bottom for sticky mobile CTA */
+@supports (padding: max(0px)) {
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+}
+
+/* Mobile tap feedback */
+@media (hover: none) {
+  .btn:active { transform: scale(0.98); }
+}
+
+::selection { background: #EA580C; color: #fff; }
+
+/* Display headings get optical tightening */
+.font-display {
+  font-feature-settings: "ss01", "cv02";
+  text-transform: uppercase;
+}
+
+/* Hazard tape */
+.tape {
+  background: repeating-linear-gradient(135deg, #EA580C 0 20px, #0E0E0E 20px 40px);
+}
+
+.tape-thin {
+  background: repeating-linear-gradient(135deg, #EA580C 0 10px, #0E0E0E 10px 20px);
+}
+
+/* Dotted concrete pattern */
+.dots {
+  background-image: radial-gradient(circle, rgba(14,14,14,0.18) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+/* Grid lines */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(14,14,14,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14,14,14,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Hover underline for links */
+.link-underline {
+  background-image: linear-gradient(#EA580C, #EA580C);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .35s cubic-bezier(.2,.8,.2,1);
+}
+.link-underline:hover { background-size: 100% 2px; }
+
+/* Button base */
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: 0.95rem 1.4rem;
+  font-weight: 700; letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  min-height: 48px;
+  transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  will-change: transform;
+}
+@media (min-width: 768px) {
+  .btn { padding: 1rem 1.6rem; font-size: 0.875rem; }
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: #EA580C; color: #fff; }
+.btn-primary:hover { background: #C94A07; }
+.btn-dark { background: #0E0E0E; color: #fff; }
+.btn-dark:hover { background: #262626; }
+.btn-ghost { background: transparent; color: #0E0E0E; border: 2px solid #0E0E0E; }
+.btn-ghost:hover { background: #0E0E0E; color: #fff; }
+
+/* Section label chip */
+.chip {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .45rem .8rem; font-size: .75rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: #0E0E0E; color: #EA580C;
+}
+.chip .dot { width: .4rem; height: .4rem; background: #EA580C; border-radius: 9999px; display: inline-block; }
+
+/* Big ticker */
+.ticker { display: flex; width: max-content; }
+
+/* Decorative number */
+.decor-num {
+  font-family: var(--font-display), Impact, sans-serif;
+  color: rgba(14,14,14,0.08);
+  font-size: clamp(6rem, 18vw, 18rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: #262626; }
+*::-webkit-scrollbar-thumb:hover { background: #EA580C; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
